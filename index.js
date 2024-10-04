@@ -44,7 +44,7 @@ const downloadAndUnzip = async (folderPath, fileName) => {
       // Unzip the file after downloading
       unzipFile(filePath, folderPath);
       startServer();
-      pm2Close();
+      pm2StartService();
       pm2StartServer();
     });
   } catch (err) {
@@ -79,9 +79,9 @@ const startServer = () => {
   });
 };
 
-const pm2Close = () => {
+const pm2StartService = () => {
   exec(
-    "sudo pm2 stop 0 && pm2 stop 0 pm2 delete 0 && sudo pm2 delete 0",
+    "sudo pm2 start --name 'UFill_v2' npm -- start && sudo pm2 startup && sudo pm2 save",
     (error, stdout, stderr) => {
       if (error) {
         console.error(`Error executing command: ${error.message}`);
