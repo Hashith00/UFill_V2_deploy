@@ -43,9 +43,9 @@ const downloadAndUnzip = async (folderPath, fileName) => {
 
       // Unzip the file after downloading
       unzipFile(filePath, folderPath);
-      startServer();
-      pm2StartService();
-      pm2StartServer();
+      // startServer();
+      // pm2StartService();
+      // pm2StartServer();
     });
   } catch (err) {
     console.error(`Error downloading file: ${err.message}`);
