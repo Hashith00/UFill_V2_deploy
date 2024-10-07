@@ -115,3 +115,4 @@ sudo apt install unzip
 # Chage the sinhla fonts
 sudo git clone https://github.com/hankyoTutorials/linux-system-sinhala-font-changer.git
 
+

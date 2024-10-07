@@ -8,8 +8,8 @@ require("dotenv").config({ path: "./.env" });
 const s3 = new S3Client({
   region: process.env.REGION,
   credentials: {
-    accessKeyId: process.env.ACCESS_KEY, // Replace with your access key
-    secretAccessKey: process.env.SECRET_ACCESS_KEY, // Replace with your secret key
+    accessKeyId: process.env.ACCESS_KEY,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
   },
 });
 
@@ -28,7 +28,7 @@ const downloadAndUnzip = async (folderPath, fileName) => {
   const filePath = path.join(folderPath, fileName);
   const params = {
     Bucket: "bucketuni",
-    Key: "hashith/UFill_V2.zip", // Replace with your ZIP file's key
+    Key: "hashith/UFill_V2.zip",
   };
 
   try {
@@ -65,6 +65,7 @@ const unzipFile = (zipFilePath, outputFolder) => {
   console.log("Files unzipped successfully to:", outputFolder);
 };
 
+// Starts the Ufill server
 const startServer = () => {
   exec("cd UFill_V2 && npm i", (error, stdout, stderr) => {
     if (error) {
@@ -79,6 +80,7 @@ const startServer = () => {
   });
 };
 
+// Kill all the previos pm2 process
 const pm2StartService = () => {
   exec(
     "sudo pm2 start --name 'UFill_v2' npm -- start && sudo pm2 startup && sudo pm2 save",
@@ -96,6 +98,7 @@ const pm2StartService = () => {
   );
 };
 
+// Start the UFill as a pm2 process
 const pm2StartServer = () => {
   exec("pm2 start --name 'UFill' npm -- start", (error, stdout, stderr) => {
     if (error) {
