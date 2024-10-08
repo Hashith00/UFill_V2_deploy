@@ -80,39 +80,6 @@ const startServer = () => {
   });
 };
 
-// Kill all the previos pm2 process
-const pm2StartService = () => {
-  exec(
-    "sudo pm2 start --name 'UFill_v2' npm -- start && sudo pm2 startup && sudo pm2 save",
-    (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error executing command: ${error.message}`);
-        return;
-      }
-      if (stderr) {
-        console.error(`Standard Error: ${stderr}`);
-        return;
-      }
-      console.log(`Standard Output: ${stdout}`);
-    }
-  );
-};
-
-// Start the UFill as a pm2 process
-const pm2StartServer = () => {
-  exec("pm2 start --name 'UFill' npm -- start", (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing command: ${error.message}`);
-      return;
-    }
-    if (stderr) {
-      console.error(`Standard Error: ${stderr}`);
-      return;
-    }
-    console.log(`Standard Output: ${stdout}`);
-  });
-};
-
 const removeFolder = () => {
   exec("sudo rm -rf UFill_V2", (error, stdout, stderr) => {
     if (error) {
